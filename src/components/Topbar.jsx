@@ -5,15 +5,19 @@ export default function Topbar({
   setSearch,
   onCategoryClick,
   onSortClick,
+  pageType = "mentors",
 }) {
+  const isMentors = pageType === "mentors";
   return (
     <header className="topbar">
       <div className="topbar-left">
-        <h1 className="page-title">Explore Mentors</h1>
+        <h1 className="page-title">
+          {isMentors ? "Explore Mentors" : "Explore Task"}
+        </h1>
         <div className="search-wrapper">
           <input
             className="search-input"
-            placeholder="Search Mentors"
+            placeholder={isMentors ? "Search Mentors" : "Search Task"}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />

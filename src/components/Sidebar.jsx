@@ -1,12 +1,14 @@
 import React from "react";
 import HelpCenter from "./HelpCenter.jsx";
+import { Link, useLocation } from "react-router-dom";
 
-const SidebarItem = ({ icon, label, active }) => (
-  <div className={`sidebar-item ${active ? "active" : ""} clickable`}>
+const SidebarItem = ({ icon, label, to, active }) => (
+  <Link to={to} className={`sidebar-item ${active ? "active" : ""} clickable`}>
     <span className="material-icons">{icon}</span>
     <span className="label">{label}</span>
-  </div>
+  </Link>
 );
+
 
 export default function Sidebar() {
   return (
@@ -17,11 +19,31 @@ export default function Sidebar() {
       </div>
 
       <nav className="sidebar-nav">
-        <SidebarItem icon="grid_view" label="Overview" />
-        <SidebarItem icon="task_alt" label="Task" />
-        <SidebarItem icon="supervisor_account" label="Mentors" active />
-        <SidebarItem icon="chat_bubble_outline" label="Message" />
-        <SidebarItem icon="settings" label="Settings" />
+        <SidebarItem
+          icon="grid_view"
+          label="Overview"
+          to="/"
+          active={location.pathname === "/"}
+        />
+        <SidebarItem
+          icon="task_alt"
+          label="Task"
+          to="/tasks"
+          active={location.pathname === "/tasks"}
+        />
+        <SidebarItem
+          icon="supervisor_account"
+          label="Mentors"
+          to="/mentors"
+          active={location.pathname === "/mentors"}
+        />
+        <SidebarItem
+          icon="chat_bubble_outline"
+          label="Message"
+          to="#"
+          active={false}
+        />
+        <SidebarItem icon="settings" label="Settings" to="#" active={false} />
       </nav>
 
       <div className="sidebar-footer">
